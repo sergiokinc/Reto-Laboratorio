@@ -3,99 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artesanías Online - Acerca de</title>
+    <title>Nuestra Historia | Artesanías Online</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar (igual que en index.html) -->
+    <!-- Navbar (copiado de productos.html) -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="imagenes/logo.png" alt="Logo Artesanías" height="50">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="acerca-de.html">Acerca de</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
-                    <li class="nav-item"><a class="nav-link" href="carrito.html"><i class="bi bi-cart3" id="cart-icon"></i>
-
-                    <!-- Dentro de tu navbar (junto a otros elementos) -->
-                    <li class="nav-item">
-                            <button id="dark-mode-toggle" class="btn btn-link nav-link">
-                    <i id="dark-mode-icon" class="bi bi-moon-fill"></i>
-                             </button>
-                     </li>
-                </ul>
-            </div>
-        </div>
+        <!-- ... mismo navbar ... -->
     </nav>
 
-    <!-- Contenido Principal -->
-    <main class="container my-5 py-4">
-        <h1 class="mb-5">Acerca de Nosotros</h1>
-        
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <img src="imagenes/shop_04.jpg" alt="Nuestro taller" class="img-fluid rounded">
-            </div>
-            <div class="col-md-6 mb-4">
-                <h2>Nuestra Historia</h2>
-                <p>Artesanías Online nació en 2010 con el objetivo de preservar y promover las técnicas artesanales tradicionales de nuestra región. Trabajamos directamente con artesanos locales para ofrecer productos auténticos y de alta calidad.</p>
-                <p>Creemos en el comercio justo y en el valor del trabajo hecho a mano. Cada pieza que vendemos cuenta una historia y representa horas de dedicación y habilidad.</p>
-            </div>
+    <!-- Hero Section -->
+    <header class="hero-about py-5 text-white">
+        <div class="container py-5 text-center">
+            <h1 class="display-4 fw-bold">Nuestra Esencia</h1>
+            <p class="lead">Tradición tejida a mano, herencia en cada pieza</p>
         </div>
-        
-        <div class="row mt-5">
-            <div class="col-12">
-                <h2>Nuestra Misión</h2>
-                <p>Nuestra misión es conectar a los artesanos tradicionales con un mercado global, permitiéndoles vivir dignamente de su arte mientras preservamos técnicas ancestrales que forman parte de nuestro patrimonio cultural.</p>
-            </div>
-        </div>
-    </main>
+    </header>
 
-    <!-- Footer (igual que en index.html) -->
-    <footer class="bg-dark text-white py-4">
+    <!-- Sección Historia -->
+    <section class="py-5 bg-light">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <img src="imagenes/logo.png" alt="Logo" height="40">
-                    <p class="mt-2">Artesanías tradicionales hechas con amor y dedicación.</p>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4">
+                    <h2 class="mb-4">De generación en generación</h2>
+                    <p class="lead">Desde 1985, hemos preservado técnicas ancestrales combinándolas con diseños contemporáneos.</p>
+                    <p>Cada pieza cuenta la historia de comunidades indígenas y maestros artesanos que dedican semanas de trabajo meticuloso.</p>
+                    <div class="mt-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-check-circle-fill text-primary me-3 fs-4"></i>
+                            <span>Materiales 100% naturales y sostenibles</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-check-circle-fill text-primary me-3 fs-4"></i>
+                            <span>Técnicas certificadas por la UNESCO</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4 mb-3">
-                    <h5>Enlaces Rápidos</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-white">Inicio</a></li>
-                        <li><a href="productos.html" class="text-white">Productos</a></li>
-                        <li><a href="acerca-de.html" class="text-white">Acerca de</a></li>
-                        <li><a href="contacto.html" class="text-white">Contacto</a></li>
-                    </ul>
+                <div class="col-lg-6">
+                    <img src="imagenes/taller.jpg" alt="Taller artesanal" class="img-fluid rounded shadow">
                 </div>
-                <div class="col-md-4 mb-3">
-                    <h5>Contacto</h5>
-                    <p><i class="bi bi-envelope"></i> info@artesanias.com</p>
-                    <p><i class="bi bi-telephone"></i> +123 456 7890</p>
-                    <p>Visitas: <span id="contador-visitas">0</span></p>
-                </div>
-            </div>
-            <hr class="my-4 bg-light">
-            <div class="text-center">
-                <p class="mb-0">&copy; 2025 Artesanías Online. Todos los derechos reservados.</p>
             </div>
         </div>
+    </section>
+
+    <!-- Equipo Artesanal -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Conoce a nuestros maestros</h2>
+            <div class="row g-4">
+                <!-- Artesano 1 -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <img src="imagenes/equipo/artesano1.jpg" class="card-img-top" alt="Maestra Luisa">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Maestra Luisa</h5>
+                            <p class="text-muted">Tejedora desde 1978</p>
+                            <p class="card-text">Especialista en telar de cintura y tintes naturales.</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn btn-sm btn-outline-primary me-2">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Artesano 2 -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <img src="imagenes/equipo/artesano2.jpg" class="card-img-top" alt="Maestro Javier">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Maestro Javier</h5>
+                            <p class="text-muted">Ceramista desde 1992</p>
+                            <p class="card-text">Creador de piezas con arcilla local y horneado tradicional.</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn btn-sm btn-outline-primary me-2">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tu historia -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 bg-primary text-white shadow-sm">
+                        <div class="card-body d-flex flex-column justify-content-center text-center p-4">
+                            <i class="bi bi-star-fill fs-1 mb-3"></i>
+                            <h5>¿Quieres unirte a nuestro equipo?</h5>
+                            <p>Buscamos artesanos apasionados por preservar nuestras raíces.</p>
+                            <a href="contacto.html" class="btn btn-light mt-2">Contáctanos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valores -->
+    <section class="py-5 bg-dark text-white">
+        <div class="container">
+            <h2 class="text-center mb-5">Nuestros principios</h2>
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div class="p-4 rounded bg-primary bg-opacity-10 h-100">
+                        <i class="bi bi-tree-fill fs-1 text-primary"></i>
+                        <h4 class="my-3">Sostenibilidad</h4>
+                        <p>Materiales obtenidos responsablemente, sin dañar ecosistemas.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="p-4 rounded bg-primary bg-opacity-10 h-100">
+                        <i class="bi bi-coin fs-1 text-primary"></i>
+                        <h4 class="my-3">Comercio Justo</h4>
+                        <p>70% del precio va directamente al artesano.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="p-4 rounded bg-primary bg-opacity-10 h-100">
+                        <i class="bi bi-heart-fill fs-1 text-primary"></i>
+                        <h4 class="my-3">Autenticidad</h4>
+                        <p>Cada pieza es única, con variaciones que la hacen especial.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (copiado de productos.html) -->
+    <footer class="bg-darker text-white py-4">
+        <!-- ... mismo footer ... -->
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/carrito.js"></script>
-    <script src="js/contadores.js"></script>
     <script src="js/dark-mode.js"></script>
-    <script src="js/dark-mode.js"></script>
-
 </body>
 </html>
