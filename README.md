@@ -1,4 +1,4 @@
-# 🛒 E-commerce [Nombre del Proyecto]  
+# 🛒 E-commerce  Productos Artesanales
 
 ## Descripción  
 E-commerce responsivo para venta de Productos Artesanales, desarrollado con tecnologías frontend puras.  
@@ -15,4 +15,4 @@ E-commerce responsivo para venta de Productos Artesanales, desarrollado con tecn
 ## Instalación  
 1. Clonar repositorio:  
    ```bash
-   git clone [url-del-repositorio]
+   gh repo clone sergiokinc/Reto-Laboratorio
