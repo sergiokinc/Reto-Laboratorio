@@ -1,177 +1,207 @@
-/* ===== VARIABLES Y ESTILOS BASE ===== */
-:root {
-    /* Colores claros (modo por defecto) */
-    --bg-light: #ffffff;
-    --text-light: #333333;
-    --card-light: #f8f9fa;
-    --navbar-light: #ffffff;
-    
-    /* Colores oscuros */
-    --bg-dark: #1a1a1a;
-    --text-dark: #f0f0f0;
-    --card-dark: #2d2d2d;
-    --navbar-dark: #121212;
-    
-    /* Colores acento */
-    --color-artesanal: #8B5A2B;
-    --color-acento: #D4A76A;
-    --primary-color: #6c757d;
-    
-    /* Transiciones */
-    --transition-time: 0.3s;
-  }
-  
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--text-light);
-    background-color: var(--bg-light);
-    padding-top: 56px;
-    transition: background-color var(--transition-time) ease, 
-                color var(--transition-time) ease;
-  }
-  
-  /* ===== COMPONENTES REUTILIZABLES ===== */
-  .card-effect {
-    transition: all var(--transition-time);
-    border: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    height: 100%;
-  }
-  
-  .card-effect:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* ===== MODO OSCURO ===== */
-  body.dark-mode {
-    color: var(--text-dark);
-    background-color: var(--bg-dark);
-  }
-  
-  /* Navbar */
-  body.dark-mode .navbar {
-    background-color: var(--navbar-dark) !important;
-    border-bottom: 1px solid #333 !important;
-  }
-  
-  body.dark-mode .navbar .nav-link,
-  body.dark-mode .navbar .navbar-brand,
-  body.dark-mode .navbar .bi {
-    color: var(--text-dark) !important;
-  }
-  
-  body.dark-mode .navbar .nav-link:hover {
-    color: var(--color-artesanal) !important;
-  }
-  
-  body.dark-mode .navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.5) !important;
-  }
-  
-  body.dark-mode .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-  }
-  
-  /* Cards */
-  body.dark-mode .card {
-    background-color: var(--card-dark);
-    border-color: #444;
-    color: var(--text-dark);
-  }
-  
-  /* Formularios */
-  body.dark-mode .form-control,
-  body.dark-mode .form-select {
-    background-color: #333;
-    color: white;
-    border-color: #555;
-  }
-  
-  /* Botones */
-  body.dark-mode .btn-outline-primary {
-    color: var(--text-dark);
-    border-color: var(--primary-color);
-  }
-  
-  body.dark-mode .btn-outline-primary:hover {
-    background-color: var(--primary-color);
-    color: var(--bg-dark);
-  }
-  
-  /* Hero Section */
-  .hero-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                url('../imagenes/shop_03.jpg') no-repeat center center;
-    background-size: cover;
-    min-height: 500px;
-    display: flex;
-    align-items: center;
-  }
-  
-  body.dark-mode .hero-section {
-    filter: brightness(0.9);
-  }
-  
-  /* ===== ANIMACIÓN CARRITO ===== */
-  @keyframes flyToCart {
-    0% { transform: translate(0, 0) scale(1); opacity: 1; }
-    70% { opacity: 0.8; }
-    100% { transform: translate(var(--end-x), var(--end-y)) scale(0.2); opacity: 0; }
-  }
-  
-  .animacion-carrito {
-    position: fixed !important;
-    z-index: 10000;
-    pointer-events: none;
-    animation: flyToCart 0.7s cubic-bezier(0.65, 0, 0.35, 1);
-    background-color: var(--color-artesanal) !important;
-    color: white !important;
-    border-radius: 50% !important;
-    width: 40px !important;
-    height: 40px !important;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-  }
-  
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 768px) {
-    .hero-section {
-      min-height: 400px;
-      text-align: center;
-    }
-    
-    body.dark-mode .mobile-menu {
-      background-color: var(--navbar-dark);
-    }
-  }
-  
-  /* ===== COMPONENTES ESPECÍFICOS ===== */
-  /* Toggle Dark Mode */
-  #dark-mode-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 0.7rem;
-    margin: -0.25rem 0;
-  }
-  
-  #dark-mode-icon {
-    font-size: 1.1rem;
-    line-height: 1;
-    transition: transform 0.3s ease;
-  }
-  
-  /* Página Acerca de */
-  .hero-about {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                url('../imagenes/taller.jpg') no-repeat center center;
-    background-size: cover;
-    min-height: 300px;
-  }
-  
-  body.dark-mode .hero-about {
-    filter: brightness(0.8);
-  }
+/* ecommerce-artesanal/src/css/styles.css */
+
+/* General Body Styling */
+body {
+  font-family: 'Arial', sans-serif; /* Choose a suitable font */
+  line-height: 1.6;
+  background-color: #f8f9fa; /* Light gray background */
+  color: #333; /* Dark gray text */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for dark mode */
+}
+
+/* Dark Mode Styling */
+body.dark-mode {
+  background-color: #343a40; /* Dark background */
+  color: #e9ecef; /* Light text */
+}
+
+body.dark-mode .navbar {
+  background-color: #454d55 !important; /* Darker background for navbar */
+}
+
+body.dark-mode .navbar-light .navbar-nav .nav-link {
+  color: #dee2e6; /* Lighter link color */
+}
+
+body.dark-mode .navbar-light .navbar-nav .nav-link.active {
+  color: #ffffff; /* White active link */
+}
+
+body.dark-mode .card {
+  background-color: #4f5962; /* Darker card background */
+  color: #dee2e6; /* Lighter card text */
+}
+
+body.dark-mode .card-title {
+  color: #ffffff; /* White card title */
+}
+
+body.dark-mode .btn-primary {
+  background-color: #007bff; /* Keep primary button color */
+  border-color: #007bff; /* Keep primary button border */
+  filter: brightness(1.1); /* Slightly brighter for contrast */
+}
+
+body.dark-mode .btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+}
+
+body.dark-mode .btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+body.dark-mode .bg-light {
+  background-color: #454d55 !important;
+}
+
+body.dark-mode .bg-dark {
+  background-color: #212529 !important;
+}
+
+
+/* Header and Navigation */
+.navbar-brand img {
+  margin-right: 10px;
+}
+
+.navbar-nav .nav-link {
+  margin-right: 15px;
+}
+
+/* Hero Section */
+.hero-section {
+  /* IMPORTANT: Adjust the path to hero-bg.jpg if it's not directly in src/imagenes */
+  background: url('../imagenes/hero-bg.jpg') no-repeat center center/cover;
+  color: white;
+  padding: 100px 0;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+.hero-section .btn {
+  margin-top: 20px;
+}
+
+/* Featured Products Section */
+.featured-products h2 {
+  margin-bottom: 30px;
+}
+
+.featured-products .card {
+  border: none;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .featured-products .card {
+   box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Lighter shadow in dark mode */
+}
+
+
+.featured-products .card:hover {
+  transform: translateY(-5px);
+}
+
+.featured-products .card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.featured-products .card-body {
+  padding: 15px;
+}
+
+/* Product List Page Specifics */
+#product-list .card-img-top {
+  height: 250px; /* Adjust height for product listing */
+}
+
+#product-list .card {
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow to product list cards too */
+}
+
+body.dark-mode #product-list .card {
+   box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+
+/* Detail Page Specifics */
+#product-detail-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Carousel Section */
+.carousel-section {
+  padding: 50px 0;
+}
+
+.carousel-item img {
+  height: 400px; /* Adjust height as needed */
+  object-fit: cover;
+}
+
+/* About Promo Section */
+.about-promo {
+  padding: 50px 0;
+}
+
+/* Footer */
+footer {
+  background-color: #343a40; /* Dark gray background */
+  color: #e9ecef; /* Light gray text */
+}
+
+footer a {
+  color: #e9ecef;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Contact Page Specifics */
+#contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#form-message {
+  font-weight: bold;
+}
+
+/* Cart Page Specifics */
+#cart-items .card {
+  border: 1px solid #dee2e6;
+}
+
+body.dark-mode #cart-items .card {
+  border-color: #6c757d; /* Adjust border color in dark mode */
+}
+
+
+#cart-items .card img {
+  height: 150px;
+  object-fit: cover;
+}
+
+.quantity-input {
+  text-align: center;
+}
+
+#empty-cart-message {
+  border: 1px dashed #ccc;
+  padding: 30px;
+  margin-top: 40px;
+}
+
+body.dark-mode #empty-cart-message {
+  border-color: #6c757d; /* Adjust border color in dark mode */
+}

@@ -1,37 +1,23 @@
 // Contador de visitas
-function actualizarContadorVisitas() {
+function incrementarVisitas() {
     let visitas = localStorage.getItem('visitas');
-    
-    if (!visitas) {
-        visitas = 0;
+    if (visitas) {
+        visitas = parseInt(visitas) + 1;  // Incrementa el contador de visitas
     } else {
-        visitas = parseInt(visitas);
+        visitas = 1;  // Si es la primera vez, iniciamos el contador en 1
     }
-    
-    visitas++;
-    localStorage.setItem('visitas', visitas);
-    
-    const contador = document.getElementById('contador-visitas');
-    if (contador) {
-        contador.textContent = visitas;
-    }
+    localStorage.setItem('visitas', visitas);  // Guardamos el valor actualizado en el localStorage
+    document.getElementById('contador-visitas').textContent = `Visitas: ${visitas}`;
 }
 
-// Efecto de navbar al hacer scroll
-function configurarNavbarScroll() {
-    const navbar = document.querySelector('.navbar');
-    
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
+// Contador de productos en el carrito
+function actualizarContadorProductos() {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];  // Obtenemos el carrito del localStorage
+    document.getElementById('contador-productos').textContent = carrito.length;  // Actualizamos el contador
 }
 
-// Inicializar
-document.addEventListener('DOMContentLoaded', function() {
-    actualizarContadorVisitas();
-    configurarNavbarScroll();
+// Llamar a las funciones al cargar la página
+document.addEventListener('DOMContentLoaded', function () {
+    incrementarVisitas();
+    actualizarContadorProductos();
 });

@@ -1,41 +1,20 @@
-function inicializarCarrusel() {
-    const productosDestacados = productos.filter(p => p.destacado);
-    const contenedor = document.getElementById('contenedor-carrusel');
-    const indicadores = document.getElementById('indicadores-carrusel');
+// ecommerce-artesanal/src/js/carrusel.js
 
-    // Generar slides e indicadores
-    productosDestacados.forEach((producto, index) => {
-        // Slide
-        const slide = document.createElement('div');
-        slide.className = `carousel-item ${index === 0 ? 'active' : ''}`;
-        slide.innerHTML = `
-            <img src="${producto.imagen}" class="d-block w-100" alt="${producto.nombre}" 
-                 onerror="this.src='imagenes/logo.png'">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>${producto.nombre}</h5>
-                <p>${producto.descripcion}</p>
-                <p class="h4">$${producto.precio}</p>
-                
-                <a href="detalle-producto.html?id=${producto.id}" class="btn btn-primary mt-2">Ver Detalles</a>
-            </div>
-        `;
-        contenedor.appendChild(slide);
+document.addEventListener('DOMContentLoaded', () => {
+  // If you are using Bootstrap's carousel, you don't need much JavaScript here
+  // Bootstrap handles the sliding functionality using data attributes.
 
-        // Indicador
-        const indicador = document.createElement('button');
-        indicador.type = 'button';
-        indicador.dataset.bsTarget = '#carruselDestacados';
-        indicador.dataset.bsSlideTo = index;
-        indicador.className = index === 0 ? 'active' : '';
-        indicadores.appendChild(indicador);
-    });
+  // Example: Basic initialization if needed (though Bootstrap's data-bs-ride="carousel" handles this)
+  const productCarousel = document.getElementById('productCarousel');
+  if (productCarousel) {
+      // Optional: Configure carousel options if needed
+      // const carousel = new bootstrap.Carousel(productCarousel, {
+      //     interval: 5000, // Auto-slide every 5 seconds
+      //     wrap: true // Continue sliding after the last item
+      // });
+  }
 
-    // Configurar autoplay (opcional)
-    const carrusel = new bootstrap.Carousel('#carruselDestacados', {
-        interval: 5000, // Cambia cada 5 segundos
-        ride: 'carousel',
-        pause: 'hover' // Pausa al poner el mouse encima
-    });
-}
-
-document.addEventListener('DOMContentLoaded', inicializarCarrusel);  
+  // If you were implementing a custom carousel without Bootstrap,
+  // this file would contain the logic for changing slides,
+  // handling indicators, etc.
+});

@@ -1,0 +1,124 @@
+<!-- ecommerce-artesanal/index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Artesanal - Inicio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="src/css/bootstrap-custom.css">
+</head>
+<body>
+
+    <header class="bg-light py-3">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="index.html">
+                    <img src="src/imagenes/logo.png" alt="Logo E-Commerce Artesanal" height="40">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="src/pages/productos.html">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="src/pages/acerca-de.html">Acerca De</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="src/pages/contacto.html">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="src/pages/carrito.html">
+                                Carrito <span class="badge bg-secondary" id="cart-count">0</span>
+                            </a>
+                        </li>
+                         <li class="nav-item">
+                            <button id="dark-mode-toggle" class="btn btn-sm btn-outline-secondary ms-2">Modo Oscuro</button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section text-center py-5">
+            <div class="container">
+                <h1>Descubre la Belleza Hecha a Mano</h1>
+                <p class="lead">Productos artesanales únicos, creados con pasión y tradición.</p>
+                <a href="src/pages/productos.html" class="btn btn-primary btn-lg">Explorar Productos</a>
+            </div>
+        </section>
+
+        <section class="featured-products py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Productos Destacados</h2>
+                <div class="row" id="featured-products-container">
+                    <!-- Featured products will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="carousel-section py-5 bg-light">
+            <div class="container">
+                 <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="./src/imagenes/feature_prod_01.jpg" class="d-block w-100" alt="Producto Destacado 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./src/imagenes/feature_prod_02.jpg" class="d-block w-100" alt="Producto Destacado 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./src/imagenes/feature_prod_03.jpg" class="d-block w-100" alt="Producto Destacado 3">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-promo py-5">
+            <div class="container text-center">
+                <h2>Nuestra Historia</h2>
+                <p class="lead">Conoce más sobre los artesanos y la pasión detrás de cada producto.</p>
+                <a href="src/pages/acerca-de.html" class="btn btn-outline-primary">Saber Más</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p>© 2023 E-Commerce Artesanal. Todos los derechos reservados.</p>
+            <p><a href="#" class="text-white">Política de Privacidad</a> | <a href="#" class="text-white">Términos y Condiciones</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="src/js/productos.js"></script>
+    <script src="src/js/carrito.js"></script>
+    <script src="src/js/main.js"></script>
+    <script src="src/js/carrusel.js"></script>
+    <script src="src/js/dark-mode.js"></script>
+</body>
+</html>

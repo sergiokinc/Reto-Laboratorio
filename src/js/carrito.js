@@ -1,221 +1,137 @@
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+// ecommerce-artesanal/src/js/carrito.js
 
-function agregarAlCarrito(idProducto) {
-    const producto = productos.find(p => p.id === idProducto);
-    if (!producto) return;
-  
-    // 1. Crear elemento animado
-    const animacion = document.createElement('div');
-    animacion.innerHTML = '<i class="bi bi-cart-plus"></i>';
-    animacion.classList.add('animacion-carrito');
-    
-    // 2. Posicionar en el botón clickeado
-    const boton = document.querySelector(`[data-id="${idProducto}"]`);
-    const botonRect = boton.getBoundingClientRect();
-    animacion.style.left = `${botonRect.left + botonRect.width/2 - 20}px`;
-    animacion.style.top = `${botonRect.top}px`;
-    
-    // 3. Calcular destino (ícono del carrito)
-    const carritoIcon = document.getElementById('cart-icon');
-    const carritoRect = carritoIcon.getBoundingClientRect();
-    animacion.style.setProperty('--end-x', `${carritoRect.left - botonRect.left}px`);
-    animacion.style.setProperty('--end-y', `${carritoRect.top - botonRect.top}px`);
-    
-    document.body.appendChild(animacion);
-  
-    // 4. Animación en el ícono del carrito
-    carritoIcon.classList.add('animate-bounce');
-    setTimeout(() => {
-      carritoIcon.classList.remove('animate-bounce');
-    }, 500);
-  
-    // 5. Eliminar después de la animación
-    setTimeout(() => {
-      animacion.remove();
-    }, 700);
-  
-    // 6. Lógica existente del carrito
-    const productoEnCarrito = carrito.find(p => p.id === idProducto);
-    if (productoEnCarrito) {
-      productoEnCarrito.cantidad = (productoEnCarrito.cantidad || 1) + 1;
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    if (product) {
+        const existingItem = cart.find(item => item.id === productId);
+        if (existingItem) {
+            existingItem.quantity++;
+        } else {
+            // Store the product details, including the image name
+            cart.push({ ...product, quantity: 1 });
+        }
+        saveCart();
+        console.log(`${product.name} added to cart.`);
     } else {
-      producto.cantidad = 1;
-      carrito.push(producto);
-    }
-    
-    guardarCarrito();
-    actualizarContadorCarrito();
-  }
-
-// Función para mostrar notificación
-function mostrarNotificacion(mensaje) {
-    const notificacion = document.createElement('div');
-    notificacion.className = 'alert alert-success position-fixed top-0 end-0 m-3';
-    notificacion.style.zIndex = '1000';
-    notificacion.style.transition = 'all 0.3s';
-    notificacion.textContent = mensaje;
-    
-    document.body.appendChild(notificacion);
-    
-    setTimeout(() => {
-        notificacion.style.opacity = '0';
-        setTimeout(() => notificacion.remove(), 300);
-    }, 2000);
-}
-
-// Función para actualizar contador del carrito
-function actualizarContadorCarrito() {
-    const contador = document.getElementById('contador-carrito');
-    if (contador) {
-        const totalItems = carrito.reduce((total, producto) => total + (producto.cantidad || 1), 0);
-        contador.textContent = totalItems;
+        console.error('Product not found with ID:', productId);
     }
 }
 
-// Función para guardar carrito en localStorage
-function guardarCarrito() {
-    localStorage.setItem('carrito', JSON.stringify(carrito));
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    saveCart();
+    console.log(`Product with ID ${productId} removed from cart.`);
 }
 
-// Función para cargar carrito desde localStorage
-function cargarCarrito() {
-    const carritoGuardado = localStorage.getItem('carrito');
-    if (carritoGuardado) {
-        carrito = JSON.parse(carritoGuardado);
-        actualizarContadorCarrito();
+function updateCartQuantity(productId, quantity) {
+    const item = cart.find(item => item.id === productId);
+    if (item) {
+        item.quantity = parseInt(quantity);
+        if (isNaN(item.quantity) || item.quantity <= 0) {
+            removeFromCart(productId);
+        } else {
+            saveCart();
+        }
     }
 }
 
-// Función para mostrar el carrito en carrito.html
-function mostrarCarrito() {
-    const listaCarrito = document.getElementById('lista-carrito');
-    const totalCarrito = document.getElementById('total-carrito');
-    const carritoVacio = document.getElementById('carrito-vacio');
-    const contenidoCarrito = document.getElementById('contenido-carrito');
-    
-    if (carrito.length === 0) {
-        contenidoCarrito.style.display = 'none';
-        carritoVacio.style.display = 'block';
+function getCartTotal() {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+}
+
+// This function needs to be globally accessible
+window.updateCartCount = function() {
+    const cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+        cartCountElement.textContent = totalItems;
+    }
+};
+
+function displayCartItems() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartSummary = document.getElementById('cart-summary');
+    const emptyCartMessage = document.getElementById('empty-cart-message');
+
+    if (!cartItemsContainer || !cartSummary || !emptyCartMessage) {
+        // Not on the cart page or missing elements
+        return;
+    }
+
+    cartItemsContainer.innerHTML = '';
+    let cartTotal = 0;
+
+    if (cart.length === 0) {
+        emptyCartMessage.style.display = 'block';
+        cartSummary.style.display = 'none';
     } else {
-        contenidoCarrito.style.display = 'block';
-        carritoVacio.style.display = 'none';
-        
-        listaCarrito.innerHTML = '';
-        let total = 0;
-        
-        carrito.forEach((producto, index) => {
-            const subtotal = producto.precio * (producto.cantidad || 1);
-            total += subtotal;
-            
-            listaCarrito.innerHTML += `
+        emptyCartMessage.style.display = 'none';
+        cartSummary.style.display = 'block';
+
+        cart.forEach(item => {
+            // --- Ruta CORRECTA para la imagen en carrito.html (desde src/pages/) ---
+            // item.image ahora solo contiene el nombre del archivo (ej: "mochila2.jpg")
+            const imageUrl = `../imagenes/${item.image}`;
+
+            const itemElement = `
                 <div class="card mb-3">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div class="d-flex">
-                                <img src="${producto.imagen}" alt="${producto.nombre}" 
-                                     class="img-thumbnail me-3" style="width: 80px; height: 80px; object-fit: cover;"
-                                     onerror="this.src='imagenes/logo.png'">
-                                <div>
-                                    <h5 class="card-title">${producto.nombre}</h5>
-                                    <p class="card-text">$${producto.precio} c/u</p>
+                    <div class="row g-0">
+                        <div class="col-md-3">
+                            <img src="${imageUrl}" class="img-fluid rounded-start" alt="${item.name}">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.name}</h5>
+                                <p class="card-text">Precio: $${item.price.toFixed(2)}</p>
+                                <div class="d-flex align-items-center">
+                                    <label for="quantity-${item.id}" class="me-2">Cantidad:</label>
+                                    <input type="number" id="quantity-${item.id}" class="form-control form-control-sm quantity-input" value="${item.quantity}" min="1" style="width: 60px;" data-product-id="${item.id}">
+                                    <button class="btn btn-danger btn-sm ms-3 remove-item-btn" data-product-id="${item.id}">Eliminar</button>
                                 </div>
-                            </div>
-                            <div class="text-end">
-                                <div class="d-flex align-items-center mb-2">
-                                    <button class="btn btn-sm btn-outline-secondary disminuir" data-index="${index}">-</button>
-                                    <span class="mx-2">${producto.cantidad || 1}</span>
-                                    <button class="btn btn-sm btn-outline-secondary aumentar" data-index="${index}">+</button>
-                                </div>
-                                <p class="mb-0 fw-bold">Subtotal: $${subtotal}</p>
-                                <button class="btn btn-sm btn-danger mt-2 quitar-producto" data-index="${index}">
-                                    <i class="bi bi-trash"></i> Eliminar
-                                </button>
+                                <p class="card-text text-end mt-2">Subtotal: $${(item.price * item.quantity).toFixed(2)}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             `;
+            cartItemsContainer.innerHTML += itemElement;
+            cartTotal += item.price * item.quantity;
         });
-        
-        totalCarrito.innerHTML = `
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Total: $${total}</h4>
-                    <button class="btn btn-success btn-lg w-100 mt-3" id="comprar">
-                        <i class="bi bi-bag-check"></i> Finalizar Compra
-                    </button>
-                </div>
-            </div>
-        `;
+
+        document.getElementById('cart-total').textContent = cartTotal.toFixed(2);
+
+        // Add event listeners for removing items and updating quantity
+        // Using event delegation for robustness on the container
+        cartItemsContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('remove-item-btn')) {
+                const productId = parseInt(event.target.dataset.productId);
+                removeFromCart(productId);
+                updateCartCount();
+                displayCartItems(); // Re-render cart after removal
+            }
+        });
+
+        cartItemsContainer.addEventListener('change', (event) => {
+             if (event.target.classList.contains('quantity-input')) {
+                const productId = parseInt(event.target.dataset.productId);
+                const newQuantity = parseInt(event.target.value);
+                updateCartQuantity(productId, newQuantity);
+                updateCartCount();
+                displayCartItems(); // Re-render cart to reflect subtotal/total changes
+             }
+        });
     }
 }
 
-// Eventos para el carrito
-document.addEventListener('DOMContentLoaded', function() {
-    cargarCarrito();
-    
-    // Mostrar carrito si estamos en carrito.html
-    if (document.getElementById('lista-carrito')) {
-        mostrarCarrito();
-        
-        // Evento para vaciar carrito
-        document.getElementById('vaciar-carrito').addEventListener('click', function() {
-            if (confirm('¿Estás seguro de vaciar el carrito?')) {
-                carrito = [];
-                guardarCarrito();
-                mostrarCarrito();
-                actualizarContadorCarrito();
-            }
-        });
-        
-        // Evento para finalizar compra
-        document.addEventListener('click', function(e) {
-            if (e.target.id === 'comprar') {
-                alert('¡Compra realizada con éxito! Gracias por tu compra.');
-                carrito = [];
-                guardarCarrito();
-                mostrarCarrito();
-                actualizarContadorCarrito();
-            }
-        });
-    }
-});
 
-// Eventos delegados para modificar cantidad y quitar productos
-document.addEventListener('click', function(e) {
-    // Aumentar cantidad
-    if (e.target.classList.contains('aumentar')) {
-        const index = e.target.getAttribute('data-index');
-        carrito[index].cantidad = (carrito[index].cantidad || 1) + 1;
-        guardarCarrito();
-        mostrarCarrito();
-        actualizarContadorCarrito();
-        
-    }
-    
-    // Disminuir cantidad
-    if (e.target.classList.contains('disminuir')) {
-        const index = e.target.getAttribute('data-index');
-        if (carrito[index].cantidad > 1 || !carrito[index].cantidad) {
-            carrito[index].cantidad = (carrito[index].cantidad || 2) - 1;
-            guardarCarrito();
-            mostrarCarrito();
-            actualizarContadorCarrito();
-        }
-    }
-    
-    // Quitar producto
-    if (e.target.classList.contains('quitar-producto')) {
-        const index = e.target.getAttribute('data-index');
-        carrito.splice(index, 1);
-        guardarCarrito();
-        mostrarCarrito();
-        actualizarContadorCarrito();
-    }
-    
-    // Agregar al carrito desde cualquier página
-    if (e.target.classList.contains('agregar-carrito')) {
-        const idProducto = parseInt(e.target.getAttribute('data-id'));
-        agregarAlCarrito(idProducto);
-    }
-});
+function clearCart() {
+    cart = [];
+    saveCart();
+    console.log('Cart cleared.');
+}
