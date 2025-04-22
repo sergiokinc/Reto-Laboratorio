@@ -202,3 +202,4 @@ body.dark-mode #cart-items .card {
 body.dark-mode #empty-cart-message {
   border-color: #6c757d; /* Adjust border color in dark mode */
 }
+/*finally, add this to the end of your CSS file*/
