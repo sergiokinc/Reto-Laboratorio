@@ -1,0 +1,207 @@
+/* ecommerce-artesanal/src/css/styles.css */
+
+/* General Body Styling */
+body {
+  font-family: 'Arial', sans-serif; /* Choose a suitable font */
+  line-height: 1.6;
+  background-color: #f8f9fa; /* Light gray background */
+  color: #333; /* Dark gray text */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for dark mode */
+}
+
+/* Dark Mode Styling */
+body.dark-mode {
+  background-color: #343a40; /* Dark background */
+  color: #e9ecef; /* Light text */
+}
+
+body.dark-mode .navbar {
+  background-color: #454d55 !important; /* Darker background for navbar */
+}
+
+body.dark-mode .navbar-light .navbar-nav .nav-link {
+  color: #dee2e6; /* Lighter link color */
+}
+
+body.dark-mode .navbar-light .navbar-nav .nav-link.active {
+  color: #ffffff; /* White active link */
+}
+
+body.dark-mode .card {
+  background-color: #4f5962; /* Darker card background */
+  color: #dee2e6; /* Lighter card text */
+}
+
+body.dark-mode .card-title {
+  color: #ffffff; /* White card title */
+}
+
+body.dark-mode .btn-primary {
+  background-color: #007bff; /* Keep primary button color */
+  border-color: #007bff; /* Keep primary button border */
+  filter: brightness(1.1); /* Slightly brighter for contrast */
+}
+
+body.dark-mode .btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+}
+
+body.dark-mode .btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+body.dark-mode .bg-light {
+  background-color: #454d55 !important;
+}
+
+body.dark-mode .bg-dark {
+  background-color: #212529 !important;
+}
+
+
+/* Header and Navigation */
+.navbar-brand img {
+  margin-right: 10px;
+}
+
+.navbar-nav .nav-link {
+  margin-right: 15px;
+}
+
+/* Hero Section */
+.hero-section {
+  /* IMPORTANT: Adjust the path to hero-bg.jpg if it's not directly in src/imagenes */
+  background: url('../imagenes/hero-bg.jpg') no-repeat center center/cover;
+  color: white;
+  padding: 100px 0;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+.hero-section .btn {
+  margin-top: 20px;
+}
+
+/* Featured Products Section */
+.featured-products h2 {
+  margin-bottom: 30px;
+}
+
+.featured-products .card {
+  border: none;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .featured-products .card {
+   box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Lighter shadow in dark mode */
+}
+
+
+.featured-products .card:hover {
+  transform: translateY(-5px);
+}
+
+.featured-products .card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.featured-products .card-body {
+  padding: 15px;
+}
+
+/* Product List Page Specifics */
+#product-list .card-img-top {
+  height: 250px; /* Adjust height for product listing */
+}
+
+#product-list .card {
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow to product list cards too */
+}
+
+body.dark-mode #product-list .card {
+   box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+
+/* Detail Page Specifics */
+#product-detail-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Carousel Section */
+.carousel-section {
+  padding: 50px 0;
+}
+
+.carousel-item img {
+  height: 400px; /* Adjust height as needed */
+  object-fit: cover;
+}
+
+/* About Promo Section */
+.about-promo {
+  padding: 50px 0;
+}
+
+/* Footer */
+footer {
+  background-color: #343a40; /* Dark gray background */
+  color: #e9ecef; /* Light gray text */
+}
+
+footer a {
+  color: #e9ecef;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Contact Page Specifics */
+#contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#form-message {
+  font-weight: bold;
+}
+
+/* Cart Page Specifics */
+#cart-items .card {
+  border: 1px solid #dee2e6;
+}
+
+body.dark-mode #cart-items .card {
+  border-color: #6c757d; /* Adjust border color in dark mode */
+}
+
+
+#cart-items .card img {
+  height: 150px;
+  object-fit: cover;
+}
+
+.quantity-input {
+  text-align: center;
+}
+
+#empty-cart-message {
+  border: 1px dashed #ccc;
+  padding: 30px;
+  margin-top: 40px;
+}
+
+body.dark-mode #empty-cart-message {
+  border-color: #6c757d; /* Adjust border color in dark mode */
+}
